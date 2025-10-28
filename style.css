@@ -1,0 +1,13 @@
+body { font-family: Arial, sans-serif; background: #f3fff6; }
+.container { max-width: 720px; margin: 32px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+h1 { margin-top: 0; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; margin-top: 12px; }
+label { font-size: 14px; }
+input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+.actions { grid-column: span 2; text-align: right; }
+button { padding: 10px 16px; background: #2e8b57; color: white; border: none; border-radius: 6px; cursor: pointer; }
+.train-area { margin-top: 20px; border-top: 1px dashed #eee; padding-top: 12px; }
+.result { margin: 12px 0; padding: 10px; border-radius: 6px; background: #f7fdf6; }
+.bad { color: #b33; font-weight: bold; }
+.good { color: #2a8b3b; font-weight: bold; }
+footer { margin-top: 18px; font-size: 13px; color: #666; }

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Air Quality Health Impact Prediction</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Air Quality Health Impact Prediction</h1>
+    <p>Enter pollutant values and predict whether air quality is Healthy or Unhealthy (Logistic Regression).</p>
+
+    {% if result %}
+      <div class="result">
+        <strong>Prediction:</strong>
+        {% if result.pred == 1 %}
+          <span class="bad">Unhealthy</span>
+        {% else %}
+          <span class="good">Healthy</span>
+        {% endif %}
+        {% if result.prob is not none %}
+          <div>Probability of Unhealthy: {{ (result.prob*100) | round(2) }}%</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <form action="/predict" method="post" class="form-grid">
+      <label>PM2.5</label><input type="number" step="any" name="PM2.5" required>
+      <label>PM10</label><input type="number" step="any" name="PM10" required>
+      <label>NO2</label><input type="number" step="any" name="NO2" required>
+      <label>SO2</label><input type="number" step="any" name="SO2" required>
+      <label>CO</label><input type="number" step="any" name="CO" required>
+      <label>O3</label><input type="number" step="any" name="O3" required>
+      <div class="actions">
+        <button type="submit">Predict</button>
+      </div>
+    </form>
+
+    <div class="train-area">
+      <h3>Train / Update Model</h3>
+      <p>Place your dataset CSV at <code>data/air_quality.csv</code> and then click to train. The CSV should include columns: <code>PM2.5, PM10, NO2, SO2, CO, O3</code>. If <code>AQI</code> is present it'll be used; otherwise AQI = mean(pollutants).</p>
+      <form action="/train" method="get">
+        <button type="submit">Train Model</button>
+      </form>
+    </div>
+
+    <footer>
+      <p>Suggested dataset: <a href="https://www.kaggle.com/datasets/rohanrao/air-quality-data-in-india" target="_blank">Kaggle - Air Quality Data in India</a></p>
+    </footer>
+  </div>
+</body>
+</html>
